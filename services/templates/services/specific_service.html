@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  Specific service
+{% endblock %} 
+
+{% block content %} 
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">  
+
+      		
+
+        <div class="col">
+          <div class=" shadow-sm">
+          	<h3>{{service.service_title}}</h3>         
+          	<img class="card-img-top" src="{{ service.service_image.url }}"/>
+            <div class="card-body">
+              <p class="card-text">{{ service.service_text }}</p>    
+              <small class="text-muted">{{service.service_date}}</small>       
+          </div>
+        </div>
+      </div>
+
+       <!-- Put this script tag to the <head> of your page -->
+          <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+
+          <script type="text/javascript">
+            VK.init({apiId: 7808959, onlyWidgets: true});
+          </script>
+
+          <!-- Put this div tag to the place, where the Comments block will be -->
+          <div id="vk_comments"></div>
+          <script type="text/javascript">
+          VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"});
+          </script>
+
+     
+
+    </div>
+  </div>
+{% endblock %}

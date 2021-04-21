@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+  Services
+{% endblock %}
+
+{% block content %}
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1>Hey! It's my services!</h1>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">  
+
+      		{% for service in services.all %}
+
+        <div class="col-6 mx-auto">
+          <div class="card shadow-sm">
+          	<a href="{% url 'specific_service' service.id %}"><h3>{{service.service_title}}</h3></a>          
+          	<img height="300" width="300" class="card-img-top" src="{{ service.service_image.url }}"/>
+            <div class="card-body">
+              <p class="card-text">{{ service.get_summary }}</p>    
+              <small class="text-muted">{{service.service_date}}</small>       
+          </div>
+        </div>
+      </div>
+
+      	 {% endfor %}
+
+    </div>
+  </div>
+{% endblock %}

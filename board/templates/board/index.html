@@ -1,0 +1,105 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid nounderline">
+	<div class="row">
+		<div class="col-md-1 col-xs-1 col-sm-1"></div>
+		<div class="col-md-10 col-xs-10 col-sm-10">
+			<h3 class="round3" style="text-align:xenter;">Клиенты</h3>
+		</div>
+		<div class="col-md-1 col-xs-1 col-sm-1"></div>
+	</div>	
+	<div class="row">
+		<div class="col-md-10 col-xs-10 col-sm-10"></div>
+		<div class="col-md-2 col-xs-1 col-sm-1">
+			<a href="{% url 'board:customer_create' %}">						
+				<button type="button" class="btn btn-primary">
+					<i class="fas fa-plus"></i>
+				</button>
+			</a>			
+			<br />
+		</div>
+	</div>
+	<br />
+
+	{% if customer_list %}
+		{% for customer in customer_list %}
+		<div class="row ">
+			<div class="col-md-1 col-xs-1 col-sm-1"></div>
+			<div class="col-md-7 col-xs-7 col-sm-7">
+				<ul class="list-group">
+					<li class="list-group-item ">
+						<h3>
+							<a class="nounderline" href="{% url 'board:customer_detail' customer.pk %}"> {{ customer.customer_name }} </a> 
+							<span></span>
+						</h3>
+						<br>
+						{{ customer.registration_date }}
+						<div>
+							Мастер <a href="{% url 'board:master_detail' customer.master.pk %}"> {{ customer.master }} </a>
+						</div>
+						<div>
+							email: {{ customer.email|default_if_none:"Не заполнено" }}
+							<br>
+							Комментарий: {{ customer.comment|default_if_none:"Не заполнено" }}
+						</div>						
+					</li>
+				</ul>
+				<br >
+			</div>
+			<div class="col-md-1 col-xs-1 col-sm-1">
+				<a href="{% url 'board:index' %}">
+					<button type="button" class="btn btn-success">
+						<i class="fas fa-check"></i>
+					</button>
+				</a>
+			</div>
+			<div class="col-md-1">
+				<a href="{% url 'board:customer_update' customer.pk %}">
+					<button type="button" class="btn btn-primary">
+						<i class="fas fa-pen"></i>
+					</button>
+				</a>
+			</div>
+			<!--<div class="col-md-1">
+				<a href="{% url 'board:customer_delete' customer.pk %}">
+					<button type="button" class="btn btn-danger">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				</a>
+			</div> -->
+			<div class="col-md-1">
+				<a href="#">
+					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+
+					<form  method="POST" action="{% url 'board:customer_delete' customer.pk %}">
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+						        <p class="lead text-muted">Вы уверены, что хотите удалить {{ customer.customer_name }}?</p>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>	      
+						        {% csrf_token %}<button type="submit" class="btn btn-primary">Save changes123 </button>							
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</form>
+				</a>
+				
+			</div>	
+		</div>
+		{% endfor %}
+		{% endif %}
+</div>
+{% endblock %}
