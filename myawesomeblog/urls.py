@@ -23,4 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', events.views.home, name='home'),
     path('posts/', include('blog.urls')),
+    path('board/', include('board.urls')),
+    path('service/', include('services.urls')),
+    # path('accounts/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

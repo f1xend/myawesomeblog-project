@@ -19,7 +19,7 @@
 
       		{% for post in posts.all %}
 
-        <div class="col-9 mx-auto">
+        <div class="col-6 mx-auto">
           <div class="card shadow-sm">
           	<a href="{% url 'specific_post' post.id %}"><h3>{{post.post_title}}</h3></a>          
           	<img height="300" width="300" class="card-img-top" src="{{ post.post_image.url }}"/>
