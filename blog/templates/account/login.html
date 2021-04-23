@@ -9,43 +9,42 @@
 <!--Ебаный коммит-->
 
 <div class="container my-4">
-     <section id="register-form">
-          <!--Grid row-->
-          <div class="row">        
-            <!--Grid column-->
-            <div class="col-md-6 mx-auto">  
-       
-              <section>        
-                <!-- Default form register -->
-                <form class="login text-center border border-light p-5 ui frorm" method="POST" action="{% url 'account_login' %}">
-                  <p>{% blocktrans %}Нет аккаунта? <a href="{{ signup_url }}"> Зарегистрироваться </a>{% endblocktrans %}</p>
-                  {% csrf_token %}
-                  {{ form|crispy }}
-                  {% if redirect_field_value %}
-                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                  {% endif %}
-                  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">
-                    {% trans "Forgot Password?" %}
-                  </a>
-                  <button class="btn btn-info my-4 btn-block waves-effect waves-light" type="submit">
-                    {% trans "Sign In" %}
-                  </button>
-                  <p> или войти с помощью: </p>
+  <!--Grid row-->
+  <div class="row">
+    <!--Grid column-->
+    <div class="col-md-6 mx-auto">
 
-                  <a type="button" class="light-blue-text mx-2" href="{% provider_login_url 'google' %}">
-                    <i class="fab fa-google"></i>
-                  </a>
-                  <a type="button" class="light-blue-text mx-2" href="{% provider_login_url 'vk' %}">
-                    <i class="fab fa-vk"></i>
-                  </a>
-        
-                  <hr>       
-                  
-                </form>
-              </section>
-            </div>
-            <!--Grid column-->
-        
+      <section>
+        <!-- Default form register -->
+        <form class="login text-center border border-light p-5 ui frorm" method="POST" action="{% url 'account_login' %}">
+          <p>{% blocktrans %}Нет аккаунта? <a href="{{ signup_url }}"> Зарегистрироваться </a>{% endblocktrans %}</p>
+          {% csrf_token %}
+          {{ form|crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">
+            {% trans "Forgot Password?" %}
+          </a>
+          <button class="btn btn-info my-4 btn-block waves-effect waves-light" type="submit">
+            {% trans "Sign In" %}
+          </button>
+          <p> или войти с помощью: </p>
+
+          <a type="button" class="light-blue-text mx-2" href="{% provider_login_url 'google' %}">
+            <i class="fab fa-google"></i>
+          </a>
+          <a type="button" class="light-blue-text mx-2" href="{% provider_login_url 'vk' %}">
+            <i class="fab fa-vk"></i>
+          </a>
+
+          <hr>
+
+        </form>
+      </section>
+    </div>
+    <!--Grid column-->
 
   </div>
+</div>
 {% endblock %}
