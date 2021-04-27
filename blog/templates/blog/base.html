@@ -33,7 +33,6 @@
   </head>
   <body class="barber_version">
 
-     <!-- <!-- LOADER --> 
     <!--<div id="preloader">
         <div class="cube-wrapper">
       <div class="cube-folding">
@@ -66,7 +65,7 @@
         <a class="nav-link" href="{% url 'showservice' %}">Наши услуги</a></li>
         <a class="nav-link" href="{% static 'AboutMe.txt' %}">О нас</a>
         <a class="nav-link" href="#">Наши мастера</a></li>
-        <a class="nav-link" href="#">Записаться</a>
+        <a class="nav-link" href="{% url 'booking_url' %}">Записаться</a>
         <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://vk.com/ruslan_muleev">VK</a>
         <a class="nav-link" href="{% url 'showblog' %}">Блог</a>
         <a class="nav-link" href="#">Контакты</a>

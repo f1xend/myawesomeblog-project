@@ -16,7 +16,6 @@
 	  <button type="submit">Сохранить изменения</button>
 	</form> -->
 
-
 	<div class="container my-4">
      <section id="register-form">
           <div class="row">
@@ -28,15 +27,13 @@
                 	<p class="lead"> {% trans "Login: " %}{{ request.user.username }} </p>
                 	<p class="lead"> {% trans "email: " %}{{ request.user.email }} </p>
                 	<hr>
+
                   {% csrf_token %}
                   {{ form|crispy }}
                   <button class="btn btn-info my-4 btn-block waves-effect waves-light" type="submit">
                     {% trans "Save" %}
-                  </button>
-
-
+                      </button>
                   <hr>
-
                 </form>
 
  	          </section>

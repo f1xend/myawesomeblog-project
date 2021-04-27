@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Service, Schedule, Profile, ServiceBooking
 from django.contrib.auth.forms import UserCreationForm
@@ -50,22 +51,41 @@ class ProfileUpdate(UpdateView):
         return get_object_or_404(Profile, user=self.request.user)
 
 
-class ServiceBookingAdd(FormView):
+class ServiceBookingAdd(LoginRequiredMixin, CreateView):
     # model = ServiceBooking
-    form_class = BookingForm
-    template_name = 'services/booking.html'
+    # form_class = BookingForm
+    # template_name = 'services/booking.html'
+    login_url = reverse_lazy('account_login') # urls покажи где логинишься
+
+
+    def get(self, request, *args, **kwargs):
+        form = BookingForm()
+        context = {
+            'form': form,
+        }
+        return render(request, 'services/booking.html', context=context)
 
     def post(self, request, *args, **kwargs):
-        form = BookingForm(data=request.POST)
+        form = BookingForm(request.POST)
         if form.is_valid():
             sb = form.save(commit=False)
             sb.user_id = request.user
-            shedule = Schedule.objects.get(pk=sb.schedule_id.pk)
-            shedule.schedule_waiting_status = False
-            shedule.save()
+            schedule = Schedule.objects.get(pk=sb.schedule_id.pk)
+            schedule.schedule_waiting_status = False
+            schedule.save()
             sb.save()
             return redirect('profile_url')
-        return redirect('booking_url')
+        else:
+            context = {
+                'form': form,
+                'errors': form.errors
+            }
+            return render(request, 'services/booking.html', context=context)
+
+
+        # def refirect(self):
+        #     if Profile.phone_number = None
+        #         return HttpResponseRedirect('/service/profile/')
 
     # fields = [
     #     'user_id',

@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+from django.utils import timezone
+
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
@@ -7,6 +9,8 @@ from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from phonenumber_field.modelfields import PhoneNumberField
+
+"""how?"""
 
 
 # Create your models here.
@@ -34,7 +38,12 @@ class Schedule(models.Model):
     schedule_notes = models.CharField(max_length=300, help_text=u'Textual Notes', blank=True, default='free')
 
     def __str__(self):
-        return f'{self.schedule_timefrom}:{self.schedule_timeto}'
+        # today = timezone.now()
+        # q1 = Schedule.objects.filter(self.schedule_date >= today.date())
+        # q1 = Schedule.objects.filter(self.schedule_date = timezone.now().date())
+        # q2 = q1.objects.filter(schedule_waiting_status = False)
+        my_date = self.schedule_date.strftime("%d %B")
+        return f'{my_date} {self.schedule_timefrom}:{self.schedule_timeto}'
 
     class Meta:
         verbose_name = u'Scheduling'
@@ -44,8 +53,8 @@ class Schedule(models.Model):
         overlap = False
         if new_start == fixed_end or new_end == fixed_start:  # edge case
             overlap = False
-        elif (new_start >= fixed_start and new_start <= fixed_end) or (
-                new_end >= fixed_start and new_end <= fixed_end):  # innner limits
+        elif (fixed_start <= new_start <= fixed_end) or (
+                fixed_start <= new_end <= fixed_end):  # innner limits
             overlap = True
         elif new_start <= fixed_start and new_end >= fixed_end:  # outter limits
             overlap = True
@@ -72,22 +81,29 @@ class Schedule(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth_date = models.DateField(null=True, blank=True, help_text='DD.MM.YYYY')
-    phone_number = PhoneNumberField(blank=True, null=True, help_text='+79998887766')
+    # field = phonenumber_field.modelfields.PhoneNumberField(default='79996450924', max_length=128, region='RU')
+    # phone_number = PhoneNumberField(blank=True, null=True, help_text='79998887766', default='79996450924',
+    #                                 max_length=128, region='RU')
+    phone_number = models.CharField(blank=False, null=True, help_text='+79998887766', max_length=12)
+    # phone_number = models.CharField(max_length=50, blank=True, null=True, help_text='+79998887766')
     first_name = models.CharField(max_length=300, null=True, help_text='Иван')
     last_name = models.CharField(max_length=300, null=True, help_text='Иванов')
 
     # class Meta:
     # 	def __str__(self):
     # 		return: self.user
-# @receiver(post_save, sender=User, dispatch_uid="something_here")
-# def create_user_profile(sender, **kwargs):
-#     if kwargs.get('created', False):
-#          Profile.objects.create(user=kwargs['instance'])
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User, dispatch_uid="something_here")
+def create_user_profile(sender, **kwargs):
+    if kwargs.get('created', False):
+        Profile.objects.create(user=kwargs['instance'])
+
+
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
@@ -99,6 +115,9 @@ class ServiceBooking(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     service_id = models.ForeignKey(Service, on_delete=models.CASCADE)
     schedule_id = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    # booking_phone = PhoneNumberField(null=False, blank=False)
+    # booking_phone = PhoneNumberField(blank=False, null=True, help_text='79998887766', max_length=128, region='RU')
+    booking_phone = models.CharField(blank=False, null=True, help_text='+79998887766', max_length=12)
     booking_comment = models.CharField(max_length=300, help_text=u'Textual Notes', blank=True, default=u'Свободно')
     booking_date = models.DateTimeField(auto_now_add=True)
 

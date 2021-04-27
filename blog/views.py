@@ -1,6 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
+
 from .models import Post
+
+from services.models import Profile # не смотря на ошибку с красным подчеркиванием, это будет работать rfr
+
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 import events.views
@@ -23,10 +27,12 @@ def register(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
+            username = user.email
             messages.success(request, f"New account created: {username}")
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             profile = Profile()
             profile.user = user
+            profile.save()
         else:
             messages.error(request, "Account creation failed")
 

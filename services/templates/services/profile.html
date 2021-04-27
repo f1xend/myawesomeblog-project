@@ -27,6 +27,7 @@
                 <form class="signup text-center border border-light p-5 ui frorm" id="signup_form" method="POST">
                 	<p class="lead"> {% trans "Login: " %}{{ request.user.username }} </p>
                 	<p class="lead"> {% trans "email: " %}{{ request.user.email }} </p>
+                    <p class="lead"> {{ profile.phone_number }} </p>
                 	<hr>
                   {% csrf_token %}
                   {{ form|crispy }}                                    
@@ -36,10 +37,11 @@
                   
         
                   <hr>
-                  
                 </form>
  			</section>
-               
+            </div>
+          </div>
+     </section>
         
 
   </div>

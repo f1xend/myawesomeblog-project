@@ -12,5 +12,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path("logout/", LogoutView.as_view(), name="logout"),
     path('social-auth/', include('social_django.urls', namespace="social")),
-    # path('logout', LogoutView.as_view()),
+    # path('logout', LogoutView.as_view()), где логинишься
 ]
