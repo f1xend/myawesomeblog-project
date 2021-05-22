@@ -15,7 +15,11 @@
 	  <h1>{{ request.user }}</h1>
 	  <button type="submit">Сохранить изменения</button>
 	</form> -->
-
+    <div class="container my-4">
+        <div class="col text-right">
+                      <a class="fs-4 fw-light text-center" href="{% url 'orders_url' %}">Мои посещения</a>
+                  </div>
+    </div>
 
 	<div class="container my-4">
      <section id="register-form">
@@ -23,6 +27,8 @@
             <div class="col-md-6 mx-auto">               
               <section>        
                 <!-- Default form register -->
+
+
 
                 <form class="signup text-center border border-light p-5 ui frorm" id="signup_form" method="POST">
                 	<p class="lead"> {% trans "Login: " %}{{ request.user.username }} </p>

@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '&1n8ea&3wmhie-hai4q%7&pdtwh5o9n0w-=0o#eu3u9g%e_6p0'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -46,9 +44,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.vk',   
+    'allauth.socialaccount.providers.vk',
     'crispy_forms',
-    'phonenumber_field',
+    # 'phonenumber_field',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -82,7 +80,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myawesomeblog.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -122,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -135,7 +131,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -153,11 +148,9 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = '/awesome_media/'
 
 AUTHENTICATION_BACKENDS = (
- 'django.contrib.auth.backends.ModelBackend',
- 'allauth.account.auth_backends.AuthenticationBackend'
- )
-
-
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+)
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -179,6 +172,6 @@ LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-   # ACCOUNT_EMAIL_VERIFICATION = "none"
+# ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # AUTH_USER_MODEL = 'services.Profile'

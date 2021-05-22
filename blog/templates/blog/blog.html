@@ -8,7 +8,8 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1>Hey! It's my blog!</h1>
+        <h1>Всем привет!</h1>
+        <p class="fs-4 fw-light text-center">Это мой блог, в котором я показываю работы, а так же делюсь интересными мыслями и идеями</p>
       </div>
     </div>
   </section>
@@ -21,8 +22,8 @@
 
         <div class="col-6 mx-auto">
           <div class="card shadow-sm">
-          	<a href="{% url 'specific_post' post.id %}"><h3>{{post.post_title}}</h3></a>          
-          	<img height="300" width="300" class="card-img-top" src="{{ post.post_image.url }}"/>
+          	<a href="{% url 'specific_post' post.id %}"><h3>{{post.post_title}}</h3></a>
+          	<img height="300" width="300" class="img-fluid card-img-top" src="{{ post.post_image.url }}"/>
             <div class="card-body">
               <p class="card-text">{{ post.get_summary }}</p>    
               <small class="text-muted">{{post.post_date}}</small>       

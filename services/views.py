@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from .forms import ProfileForm, BookingForm
 from django.http import HttpResponseRedirect, request
-from django.views.generic import UpdateView, View, CreateView, FormView
+from django.views.generic import UpdateView, View, CreateView, FormView, ListView
 from django.urls import reverse
 from django.urls import reverse_lazy
 import services.views
@@ -55,8 +55,7 @@ class ServiceBookingAdd(LoginRequiredMixin, CreateView):
     # model = ServiceBooking
     # form_class = BookingForm
     # template_name = 'services/booking.html'
-    login_url = reverse_lazy('account_login') # urls покажи где логинишься
-
+    login_url = reverse_lazy('account_login')  # urls покажи где логинишься
 
     def get(self, request, *args, **kwargs):
         form = BookingForm()
@@ -74,14 +73,13 @@ class ServiceBookingAdd(LoginRequiredMixin, CreateView):
             schedule.schedule_waiting_status = False
             schedule.save()
             sb.save()
-            return redirect('profile_url')
+            return redirect('orders_url')
         else:
             context = {
                 'form': form,
                 'errors': form.errors
             }
             return render(request, 'services/booking.html', context=context)
-
 
         # def refirect(self):
         #     if Profile.phone_number = None
@@ -102,3 +100,20 @@ class ServiceBookingAdd(LoginRequiredMixin, CreateView):
 
     # def get_object(self):
     #     return get_object_or_404(ServiceBooking, user_id=self.request.user)
+
+
+class UserOrdersView(LoginRequiredMixin, ListView):
+    # model = ServiceBooking
+    # form_class = BookingForm
+    # template_name = 'services/booking.html'
+    login_url = reverse_lazy('account_login')  # urls покажи где логинишься
+
+    def get(self, request, *args, **kwargs):
+        sb = ServiceBooking.objects.filter(
+            user_id=request.user
+        )
+        print(sb)
+        context = {
+            'sb': sb,
+        }
+        return render(request, 'services/orders.html', context=context)

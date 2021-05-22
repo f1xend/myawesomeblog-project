@@ -15,11 +15,20 @@
       		
 
         <div class="col">
-          <div class="card shadow-sm">
-          	<h3>{{post.post_title}}</h3>         
-          	<img height="500" width="500" class="card-img-top" src="{{ post.post_image.url }}"/>
+          <div class="shadow-sm">
+              <h3>{{post.post_title}}</h3>
+              <div class="container">
+              <div class="row">
+                <div class="">
+                  <img src="{{ post.post_image.url }}" width="500" height="500"
+                              class="rounded mx-auto d-block" style="display:block;">
+                </div>
+              </div>
+             </div>
+          	<!-- <img height="500" width="500" class="card-img-top text-center img-fluid" src="{{ post.post_image.url }}"/>
+            -->
             <div class="card-body">
-              <p class="card-text">{{ post.post_text }}</p>    
+              <p class="card-text">{{ post.post_text|linebreaks }}</p>
               <small class="text-muted">{{post.post_date}}</small>       
           </div>
         </div>

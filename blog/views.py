@@ -12,7 +12,7 @@ import events.views
 
 # Create your views here.
 def showblog(request):
-    posts = Post.objects
+    posts = Post.objects.order_by('-post_date')
     return render(request, 'blog/blog.html', {'posts': posts})
 
 

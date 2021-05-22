@@ -16,15 +16,25 @@
 
         <div class="col">
           <div class=" shadow-sm">
-          	<h3>{{service.service_title}}</h3>         
-          	<img class="card-img-top" src="{{ service.service_image.url }}"/>
-            <div class="card-body">
-              <p class="card-text">{{ service.service_text }}</p>    
-              <small class="text-muted">{{service.service_date}}</small>       
+          	<div class="container">
+              <div class="row">
+                <div class="col">
+                  <img src="{{ service.service_image.url }}" width="500" height="500"
+                              class="text-center img-fluid" style="display:block;">
+                </div>
+                <div class="col">
+                  <h5>{{service.service_title}} <span class="mr-1"> {{ service.service_price}}₽ </span></h5> <p></p>
+                  <hr>
+                    <p class="pt-1"> {{ service.service_text|linebreaks}}</p>
+                    <!-- <small class="text-muted">{{service.service_time}}</small> -->
+                </div>
+
+              </div>
+             </div>
           </div>
         </div>
       </div>
-
+        <br>
 
 
        <!-- Put this script tag to the <head> of your page -->
@@ -44,4 +54,24 @@
 
     </div>
   </div>
+<!--
+ <div class="container">
+  <div class="row">
+    <div class="col">
+      <img src="{{ service.service_image.url }}" width="500" height="500"
+                  class="text-center img-fluid" style="display:block;">
+    </div>
+    <div class="col">
+      <h5>Fantasy T-shirt</h5>
+      <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+      <p><span class="mr-1"><strong>{{ service.service_price|linebreaks}}</strong></span></p>
+      <hr>
+        <p class="pt-1">{{ service.service_text|linebreaks}}</p>
+         <small class="text-muted">{{service.service_time}}</small>
+    </div>
+
+  </div>
+ </div> -->
+
+<!--Section: Block Content-->
 {% endblock %}

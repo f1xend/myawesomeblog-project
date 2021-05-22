@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from phonenumber_field.modelfields import PhoneNumberField
+# from phonenumber_field.modelfields import PhoneNumberField
 
 """how?"""
 
@@ -19,6 +19,7 @@ class Service(models.Model):
     service_time = models.TimeField()
     service_text = models.TextField()
     service_image = models.ImageField(upload_to='service_images/')
+    service_price = models.DecimalField(default=0, max_digits=19, decimal_places=0)
 
     # service_number = models.SlugField(primary_key=True)
 
@@ -80,14 +81,14 @@ class Schedule(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField(null=True, blank=True, help_text='DD.MM.YYYY')
+    birth_date = models.DateField(null=True, blank=True, help_text='DD.MM.YYYY',  verbose_name='Дата рождения')
     # field = phonenumber_field.modelfields.PhoneNumberField(default='79996450924', max_length=128, region='RU')
     # phone_number = PhoneNumberField(blank=True, null=True, help_text='79998887766', default='79996450924',
     #                                 max_length=128, region='RU')
-    phone_number = models.CharField(blank=False, null=True, help_text='+79998887766', max_length=12)
+    phone_number = models.CharField(blank=False, null=True, help_text='+79998887766', max_length=12, verbose_name='Телефон')
     # phone_number = models.CharField(max_length=50, blank=True, null=True, help_text='+79998887766')
-    first_name = models.CharField(max_length=300, null=True, help_text='Иван')
-    last_name = models.CharField(max_length=300, null=True, help_text='Иванов')
+    first_name = models.CharField(max_length=300, null=True, help_text='Иван', verbose_name='Имя')
+    last_name = models.CharField(max_length=300, null=True, help_text='Иванов', verbose_name='Фамилия')
 
     # class Meta:
     # 	def __str__(self):
@@ -113,13 +114,19 @@ def save_user_profile(sender, instance, **kwargs):
 
 class ServiceBooking(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    service_id = models.ForeignKey(Service, on_delete=models.CASCADE)
-    schedule_id = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    service_id = models.ForeignKey(Service, on_delete=models.CASCADE, verbose_name='Услуга')
+    schedule_id = models.ForeignKey(Schedule, on_delete=models.CASCADE, verbose_name='Дата и время записи')
     # booking_phone = PhoneNumberField(null=False, blank=False)
     # booking_phone = PhoneNumberField(blank=False, null=True, help_text='79998887766', max_length=128, region='RU')
-    booking_phone = models.CharField(blank=False, null=True, help_text='+79998887766', max_length=12)
+    booking_phone = models.CharField(blank=False, null=True, help_text='+79998887766', max_length=12, verbose_name='Телефон для записи')
     booking_comment = models.CharField(max_length=300, help_text=u'Textual Notes', blank=True, default=u'Свободно')
     booking_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user_id} {self.service_id} {self.schedule_id}'
+
+    class Meta:
+        ordering = ['-pk']
 
 # @receiver(post_save, sender=Schedule)
 # def set_schedule_waiting_status(sender, instance, **kwargs):

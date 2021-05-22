@@ -8,7 +8,9 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1>Hey! It's my services!</h1>
+        <h1>Услуги</h1>
+        <p class="fs-4 fw-light text-center">Стараюсь следить за тенденциями моды и трендами,
+          а также постоянно повышаю свою квалификацию, посещая всеразличные семинары, мастер-классы и курсы.</p>
       </div>
     </div>
   </section>
@@ -21,10 +23,11 @@
 
         <div class="col-6 mx-auto">
           <div class="card shadow-sm">
-          	<a href="{% url 'specific_service' service.id %}"><h3>{{service.service_title}}</h3></a>          
-          	<img height="300" width="300" class="card-img-top" src="{{ service.service_image.url }}"/>
+          	<a href="{% url 'specific_service' service.id %}"><h3>{{service.service_title}}/{{ service.service_price}}₽</h3></a>
+
+          	<img class="img-fluid card-img-top" src="{{ service.service_image.url }}"/>
             <div class="card-body">
-              <p class="card-text">{{ service.get_summary }}</p>    
+              <p class="card-text">{{ service.get_summary }}...</p>
               <small class="text-muted">{{service.service_date}}</small>       
           </div>
         </div>

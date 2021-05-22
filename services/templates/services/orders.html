@@ -1,0 +1,82 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load account socialaccount %}
+
+{% block title %}
+  Profile
+{% endblock %}
+
+{% block content %}
+	<!-- <form method="post">
+	  {% csrf_token %}
+	  {{ form.as_p }}
+	  <h1>{{ request.user }}</h1>
+	  <button type="submit">Сохранить изменения</button>
+	</form> -->
+
+
+    <div class="container">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">service_id</th>
+                <th scope="col">schedule_id</th>
+                <th scope="col">booking_phone</th>
+                <th scope="col">booking_comment</th>
+                <th scope="col">booking_date</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for s in sb %}
+            <tr>
+              <th scope="row">{{ s.pk }}</th>
+                <td>{{ s.service_id }}</td>
+                <td>{{ s.schedule_id }}</td>
+                <td>{{ s.booking_phone }}</td>
+                <td>{{ s.booking_comment }}</td>
+                <td>{{ s.booking_date }}</td>
+            </tr>
+            <tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+    <!--
+	<div class="container my-4">
+     <section id="register-form">
+          <div class="row">   
+            <div class="col-md-6 mx-auto">               
+              <table>
+                {% for s in sb %}
+                  <p>{{ s.service_id }}</p>
+                  <p>{{ s.schedule_id }}</p>
+                  <p>{{ s.booking_phone }}</p>
+                  <p>{{ s.booking_comment }}</p>
+                  <p>{{ s.booking_date }}</p>
+                {% endfor %}
+ 			</table>
+            </div>
+          </div>
+     </section>
+
+        <table>
+        {% for el in sb %}
+            {% if forloop.counter0|divisibleby:"3" %}
+                <tr width=150>
+            {% endif %}
+        <td>
+            {{ el.text }}
+        </td>
+        {% if forloop.counter|divisibleby:"3" %}
+           </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+        
+
+  </div> -->
+{% endblock %}

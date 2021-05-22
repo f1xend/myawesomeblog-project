@@ -7,189 +7,200 @@
 {% endblock %} 
 
 {% block content %} 
-  
-  <div id="myCarousel" class="carousel slide parallax" data-ride="carousel">
-    <div id="full-width" class="owl-carousel owl-theme home-hero">
-      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          {% for event in events.all|slice:":3" %}
-            {% if forloop.first %}
-              <div class="carousel-item active overlay">
-            {% else %}
-              <div class="carousel-item overlay">
-            {% endif %}
-            <img src="{{ event.event_image.url }}" class="d-block w-100" alt="...">
-            <div class="container">
-              <div class="carousel-caption d-none d-md-block big-tagline position-absolute top-50">
-                <div class="big-tagline">
-                  <h2><strong>The Barber Shop</strong><br>
-                        in New York</h2>
-                  <p class="lead">With SMBarber responsive landing page template, <br>you can showcase your next barber shop websites!</p>
-                  {{ event.get_summary }}... <br>
-                  <a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Contact US</a>                 
-                </div>          
-              </div>        
-            </div>
-        <!-- <div class="carousel-inner">
-          <div class="carousel-item active overlay">
-            <img src="{% static 'uploads/slider-img-01.jpg' %}" class="d-block w-100" alt="...">
-            <div class="container">
-              <div class="carousel-caption d-none d-md-block big-tagline position-absolute top-50">
-                <div class="big-tagline">
-                  <h2><strong>The Barber Shop</strong><br>
-                        in New York</h2>
-                  <p class="lead">With SMBarber responsive landing page template, <br>you can showcase your next barber shop websites!</p>
-                  <a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Contact US</a>
-                </div>  
-              </div>
-            </div>          
+  <div class="testsize" style="">
+    <div id="myCarousel" class=" carousel slide parallax-off" data-ride="carousel">
+      <div id="full-width" class="owl-carousel owl-theme home-hero">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-          <div class="carousel-item overlay">
-            <img src="{% static 'uploads/slider-img-02.jpg' %}" class="d-block w-100" alt="...">
-            <div class="container">
-              <div class="carousel-caption d-none d-md-block big-tagline position-absolute top-50">
-                <div class="big-tagline">
-                  <h2><strong>The Barber Shop</strong><br>
-                        in New York</h2>
-                  <p class="lead">With SMBarber responsive landing page template, <br>you can showcase your next barber shop websites!</p>
-                  <a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Contact US</a>
-                </div>  
+          <div class="carousel-inner">
+            {% for event in events.all|slice:":3" %}
+              {% if forloop.first %}
+                <div class="carousel-item active overlay">
+              {% else %}
+                <div class="carousel-item overlay">
+              {% endif %}
+              <img src="{{ event.event_image.url }}" class="d-block w-100" >
+              <div class="container">
+                <div class="carousel-caption d-none d-md-block big-tagline position-absolute top-50">
+                  <div class="big-tagline">
+                    <h2><strong>ЛИЧНЫЙ БЛОГ</strong><br></h2>
+                    <img src="{% static 'images/20.png' %}" alt="">
+                          <h4> Мастера Lash-индустрии  </h4>
+                    <!-- <p class="lead">With SMBarber responsive landing page template, <br>you can showcase your next barber shop websites!</p>
+                    {{ event.get_summary }}... <br>
+                    <a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Contact US</a> -->
+                  </div>
+                </div>
               </div>
-            </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
           </div>
-          <div class="carousel-item overlay">
-            <img src="{% static 'uploads/slider-img-03.jpg' %}" class="d-block w-100" alt="...">
-            <div class="container">
-              <div class="carousel-caption d-none d-md-block big-tagline position-absolute top-50">
-                <div class="big-tagline">
-                  <h2><strong>The Barber Shop</strong><br>
-                        in New York</h2>
-                  <p class="lead">With SMBarber responsive landing page template, <br>you can showcase your next barber shop websites!</p>
-                  <a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Contact US</a>
-                </div>  
-              </div>
-            </div>
-          </div> 
-        </div> -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
+    </div>
     </div>
   </div>
   </div>
-</div>
 <br><br><br><br>
+
+<!-- {% for post in blog.posts.all %}
+
+        <div class="col-6 mx-auto">
+          <div class="card shadow-sm">
+          	<a href="{% url 'specific_post' post.id %}"><h3>{{post.post_title}}</h3></a>
+          	<img height="300" width="300" class="card-img-top" src="{{ post.post_image.url }}"/>
+            <div class="card-body">
+              <p class="card-text">{{ post.get_summary }}</p>
+              <small class="text-muted">{{post.post_date}}</small>
+          </div>
+        </div>
+      </div>
+
+      	 {% endfor %} -->
 
     <div class="container marketing">
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2>Heading</h2>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
 
+      <div class="col-lg-4 text-center">
+        <img width="140" height="140" src="{% static 'images/brilliant.png' %}">
+
+        <h3> <br> Качество услуг</h3>
+
+      </div>
+      <div class="col-lg-4 text-center">
+        <img width="140" height="140" src="{% static 'images/secure.png' %}">
+        <br>
+        <h3><br>Гарантии</h3>
+
+      </div>
+      <div class="col-lg-4 text-center">
+        <img width="140" height="140" src="{% static 'images/pig.png' %}">
+        <br>
+        <h3><br>Доступные цены</h3>
+
+      </div>
+    </div>
+  <!-- <div class="container px-4 py-5" id="featured-3">
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+
+        </div>
+        <img class="bi" width="100px" height="100px" src="{% static 'images/brilliant.png' %}" alt="">
+        <h2>Качество услуг</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+          Call to action
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
+        </div>
+        <h2>Гарантии</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+          Call to action
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
+        </div>
+        <h2>Доступные цены</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+          Call to action
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </div> -->
 
     <!-- START THE FEATURETTES -->
 
-    <hr class="featurette-divider">
+
+          <h1 class="fs-1 text-center"> <br> Пару слов о себе</h1>
+          <p class="fs-4 fw-light text-center">
+              Всем привет, друзья! Меня зовут Анастасия , я топ-мастер и создатель студии Lash-индустри.
+              Хотела бы немного рассказать о себе и о том как мы создавала проект. Все началось еще в далекие школьные годы,
+              одним из любимых занятий было собраться с подружками после школы и сделать «крутой» макияж, навести красоту, устроить фотосессию.
+              Таких уроков не преподавали в лицее, даже ИЗО не вполне удовлетворяло мою творческую потребность.
+              </p>
+
+
+    <!-- <hr class="featurette-divider">
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading"><span class="text-muted">Ярославна Масликова</span> </h2>
+        <p class="fs-5">Инструктор/Мастер Ногтевые услуги, Brow-индустрия</p>
+        <p class="lead"><strong>Ведущий мастер:</strong></p>
+        <ol class="list-counter-circle">
+          <li>Ногтевое искусство</li>
+          <li>Брови</li>
+        </ol>
+        <p class="lead"><strong>Инструктор:</strong></p>
+        <ol class="list-counter-circle">
+          <li>Ногтевое искусство</li>
+          <li>Брови</li>
+          <li>Продвижение</li>
+        </ol>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
+             src="{% static 'images/yara.jpeg' %}">
       </div>
-    </div>
+    </div> -->
 
     <hr class="featurette-divider">
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading"><span class="text-muted">Кононенко Анастасия</span></h2>
+        <p class="fs-5">Инструктор/Мастер Lash-индустрии</p>
+        <p class="lead"><strong>Ведущий мастер:</strong></p>
+        <ol class="list-counter-circle">
+          <li>Наращивание ресниц</li>
+        </ol>
+        <p class="lead"><strong>Инструктор:</strong></p>
+        <ol class="list-counter-circle">
+          <li>Наращивание ресниц</li>
+          <li>Продвижение</li>
+        </ol>
+        <hr class="featurette-divider">
+        <p class="fs-5 fw-light">На данный момент я ощущаю, что делать людей красивыми во всех смыслах, менять их жизнь к лучшему, искать новые способы и технологии в индустрии красоты – это мой путь, мой смысл.
+              заботиться о вашем внешнем виде и отличном настроении, забирая на себя все тяготы создания идеального образа.
+              Стараюсь прислушиваться к каждому вашему совету и реализовать каждое ваше желание, как волшебная фея.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
+             src="{% static 'images/nastya.jpg' %}">
       </div>
     </div>
 
     <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->
 
-  </div><!-- /.container -->
-
-  <div class="">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <p class="lead text-muted">Hey there! I'm excited to see you here! You can write me right now!</p>
-        <p>
-          <a target="_top" href="mailto:ruslan.muleev1785@gmail.com" class="btn btn-primary my-2">Mail me</a>
-          <!-- VK Widget -->
-        </p>
-         <!-- <div id="vk_auth"></div>
-          <script type="text/javascript">
-            VK.init({apiId: 7808959});
-          </script> 
-          <script type="text/javascript">
-            VK.Widgets.Auth("vk_auth", {"authUrl":"/dev/Login"});
-          </script>
-          <div id="vk_auth"></div>
-          <script type="text/javascript">
-            window.onload = function () {
-            VK.init({apiId: 111});
-            VK.Widgets.Auth('vk_auth', {});
-          }
-          </script> -->    
-        <img height="200" width="300" class="img-fluid" src="{% static 'me.png' %}" alt="placeholder+image">
-      </div>
-    </div>
-  </div>
-</div> 
-
+  <h1 class="fs-1 text-center"> <br> интересные события </h1>
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">  

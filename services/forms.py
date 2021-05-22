@@ -2,7 +2,7 @@ import datetime
 
 from django import forms
 from .models import Profile, ServiceBooking, Schedule
-from phonenumber_field.formfields import PhoneNumberField
+# from phonenumber_field.formfields import PhoneNumberField
 from django.utils import timezone
 import phonenumbers
 
