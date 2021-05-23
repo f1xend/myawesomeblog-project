@@ -52,12 +52,19 @@
                 	<p>{% blocktrans %}Уже зарегистрированы? <a href="{{ login_url }}"> Войти </a>{% endblocktrans %}</p>
                   {% csrf_token %}
                   {{ form|crispy }}
+
                   {% if redirect_field_value %}
 				  	<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 				  {% endif %}                  
                   <button class="btn btn-info my-4 btn-block waves-effect waves-light" type="submit">
                     {% trans "Sign Up" %} &raquo;
                   </button>
+                  <div class="form-check">
+                    <input required class="form-check-input" type="checkbox" value="">
+                    <label required class="form-check-label">
+                      Нажимая на кнопку вы даете согласие на обработку персональных данных
+                    </label>
+                  </div>
                   <p> или зарегистрируйтесь с помощью: </p>
 
                   <a type="button" class="light-blue-text mx-2" href="{% provider_login_url 'google' %}">
