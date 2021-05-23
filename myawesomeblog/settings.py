@@ -24,7 +24,7 @@ SECRET_KEY = '&1n8ea&3wmhie-hai4q%7&pdtwh5o9n0w-=0o#eu3u9g%e_6p0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mylashblog.pythonanywhere.com', '127.0.0.1']
 
 # Application definition
 
@@ -135,11 +135,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATICFILES_DIRS = [
-
-    BASE_DIR / 'myawesomeblog/static/'
-
-]
+# STATICFILES_DIRS = [
+#
+#     BASE_DIR / 'myawesomeblog/static/'
+#
+# ]
 #
 # STATIC_ROOT = BASE_DIR / 'static/'
 # STATIC_URL = '/static/'
